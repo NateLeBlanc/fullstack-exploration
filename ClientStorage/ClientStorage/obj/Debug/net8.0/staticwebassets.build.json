@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "AwWSr2Kt9lLLFw4y+n6pcGIxD7RSVPYuEZa249fkQJY=",
+  "Source": "ClientStorage.Server",
+  "BasePath": "_content/ClientStorage.Server",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
