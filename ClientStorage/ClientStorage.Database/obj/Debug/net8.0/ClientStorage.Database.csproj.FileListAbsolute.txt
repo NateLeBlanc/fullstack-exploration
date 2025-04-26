@@ -1,0 +1,12 @@
+C:\Users\Nathan\source\repos\ClientStorage\ClientStorage.Database\bin\Debug\net8.0\ClientStorage.Database.deps.json
+C:\Users\Nathan\source\repos\ClientStorage\ClientStorage.Database\bin\Debug\net8.0\ClientStorage.Database.dll
+C:\Users\Nathan\source\repos\ClientStorage\ClientStorage.Database\bin\Debug\net8.0\ClientStorage.Database.pdb
+C:\Users\Nathan\source\repos\ClientStorage\ClientStorage.Database\obj\Debug\net8.0\ClientStorage.Database.csproj.AssemblyReference.cache
+C:\Users\Nathan\source\repos\ClientStorage\ClientStorage.Database\obj\Debug\net8.0\ClientStorage.Database.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Nathan\source\repos\ClientStorage\ClientStorage.Database\obj\Debug\net8.0\ClientStorage.Database.AssemblyInfoInputs.cache
+C:\Users\Nathan\source\repos\ClientStorage\ClientStorage.Database\obj\Debug\net8.0\ClientStorage.Database.AssemblyInfo.cs
+C:\Users\Nathan\source\repos\ClientStorage\ClientStorage.Database\obj\Debug\net8.0\ClientStorage.Database.csproj.CoreCompileInputs.cache
+C:\Users\Nathan\source\repos\ClientStorage\ClientStorage.Database\obj\Debug\net8.0\ClientStorage.Database.dll
+C:\Users\Nathan\source\repos\ClientStorage\ClientStorage.Database\obj\Debug\net8.0\refint\ClientStorage.Database.dll
+C:\Users\Nathan\source\repos\ClientStorage\ClientStorage.Database\obj\Debug\net8.0\ClientStorage.Database.pdb
+C:\Users\Nathan\source\repos\ClientStorage\ClientStorage.Database\obj\Debug\net8.0\ref\ClientStorage.Database.dll
