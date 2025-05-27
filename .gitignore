@@ -1,0 +1,18 @@
+*.suo
+*.user
+bin
+obj
+**/.vs/
+.vs
+.vscode
+.config/
+packages
+*.db
+**/publish/*
+.teamcity/target/
+
+# .NET development environment variables
+**appsettings.Development.json
+
+# nohup logs
+*.out
