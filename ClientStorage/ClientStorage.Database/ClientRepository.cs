@@ -3,14 +3,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ClientStorage.Database;
 
-public class ClientRepository
+public class ClientRepository(ClientDbContext clientDbContext)
 {
-    private readonly ClientDbContext _clientDbContext;
-
-    public ClientRepository(ClientDbContext clientDbContext)
-    {
-        _clientDbContext = clientDbContext;
-    }
+    private readonly ClientDbContext _clientDbContext = clientDbContext;
 
     public async Task AddClientAsync(Client client)
     {

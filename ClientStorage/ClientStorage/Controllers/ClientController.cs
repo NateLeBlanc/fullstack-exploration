@@ -7,14 +7,9 @@ namespace ClientStorage.Server.Controllers;
 
 [ApiController]
 [Route("api/clients")]
-public class ClientController : ControllerBase
+public class ClientController(ClientRepository client) : ControllerBase
 {
-    private readonly ClientRepository _clientRepo;
-
-    public ClientController(ClientRepository client)
-    {
-        _clientRepo = client;
-    }
+    private readonly ClientRepository _clientRepo = client;
 
     //TODO: Think about adding a mediator for logic check of valid inputs
 

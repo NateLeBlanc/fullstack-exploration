@@ -23,7 +23,11 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Client Storage v1");
+        c.RoutePrefix = "swagger";
+    });
 }
 
 app.UseHttpsRedirection();
@@ -33,12 +37,8 @@ app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllers();
 });
-app.UseSwagger();
-app.UseSwaggerUI(c =>
-{
-    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Client Storage v1");
-    c.RoutePrefix = "swagger";
-});
+
+// Add Websocket connections
 app.UseWebSockets();
 app.Map("/ws", async context =>
 {
@@ -63,7 +63,7 @@ app.Map("/ws", async context =>
 
             var receivedText = Encoding.UTF8.GetString(buffer, 0, result.Count);
 
-            Console.WriteLine("[Server] Received: {receivedText}", receivedText);
+            Console.WriteLine($"[Server] Received: {receivedText}");
 
             var responseText = "Hello from server.";
             var responseBytes = Encoding.UTF8.GetBytes(responseText);
@@ -81,7 +81,11 @@ app.Map("/ws", async context =>
 });
 
 // Migrate Database
-
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<ClientDbContext>();
+    db.Database.Migrate();
+}
 
 app.Run();
 

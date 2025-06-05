@@ -1,9 +1,14 @@
 *.suo
 *.user
+bin
 bin/
+**/bin/
+obj
 obj/
+**/obj/
 **/.vs/
 .vs
+.vs/
 .vscode
 .config/
 packages
@@ -12,8 +17,6 @@ packages
 .teamcity/target/
 *.dll
 *.exe
-**/bin/
-**/obj/
 
 # .NET development environment variables
 **appsettings.Development.json
