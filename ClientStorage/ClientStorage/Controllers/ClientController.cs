@@ -15,16 +15,12 @@ public class ClientController(ClientRepository client) : ControllerBase
 
     [HttpPost]
     [SwaggerOperation("Add a new clients.")]
-    [SwaggerResponse(StatusCodes.Status200OK, "Add clients.")]
+    [SwaggerResponse(StatusCodes.Status200OK, "Added client.")]
     [SwaggerResponse(StatusCodes.Status500InternalServerError, "Error creating clients.", typeof(ProblemDetails))]
     public async Task<IActionResult> AddClient([FromBody] Client client)
     {
         await _clientRepo.AddClientAsync(client);
-        return Ok(new
-        {
-            message = "Client added",
-            client
-        });
+        return Ok();
     }
 
     [HttpGet]
@@ -35,5 +31,21 @@ public class ClientController(ClientRepository client) : ControllerBase
     {
         List<Client> clients = await _clientRepo.GetClientsAsync();
         return Ok(clients);
+    }
+
+    [HttpDelete]
+    [SwaggerOperation("Delete a Client by Id")]
+    [SwaggerResponse(StatusCodes.Status200OK, "Deleted client.")]
+    [SwaggerResponse(StatusCodes.Status204NoContent, "Client already deleted.")]
+    [SwaggerResponse(StatusCodes.Status500InternalServerError, "Error getting clients.", typeof(ProblemDetails))]
+    public async Task<IActionResult> DeleteClient([FromBody] int clientId)
+    {
+        Client? removedClient = await _clientRepo.DeleteClientByIdAsync(clientId);
+        if (removedClient is null)
+        {
+            return NoContent();
+        }
+
+        return Ok();
     }
 }

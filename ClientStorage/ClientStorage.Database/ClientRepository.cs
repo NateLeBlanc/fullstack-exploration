@@ -17,4 +17,17 @@ public class ClientRepository(ClientDbContext clientDbContext)
     {
         return await _clientDbContext.Clients.ToListAsync();
     }
+
+    public async Task<Client?> DeleteClientByIdAsync(int clientId)
+    {
+        Client? clientToRemove = _clientDbContext.Clients.FirstOrDefault(client => client.Id == clientId);
+        if (clientToRemove is null)
+        {
+            return null;
+        }
+        _clientDbContext.Remove(clientToRemove);
+        await _clientDbContext.SaveChangesAsync();
+
+        return clientToRemove;
+    }
 }

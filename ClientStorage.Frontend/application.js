@@ -20,10 +20,10 @@ webSocket.addEventListener("error", (err) => {
 
 document.getElementById("sendBtn").addEventListener("click", async () => {
     const firstName = document.getElementById("firstNameInput").value;
-    const lastName = document.getElementById("firstNameInput").value;
+    const lastName = document.getElementById("lastNameInput").value;
     const age = document.getElementById("ageInput").value;
 
-    const response = await fetch('http://localhost:5000/api/clients', {
+    await fetch('http://localhost:5000/api/clients', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -34,7 +34,25 @@ document.getElementById("sendBtn").addEventListener("click", async () => {
             age: age
         })
     });
+});
+
+document.getElementById("getBtn").addEventListener("click", async() => {
+    const response = await fetch('http://localhost:5000/api/clients', {
+        method: 'GET'
+    });
 
     const result = await response.json();
     document.getElementById('responseArea').innerText = JSON.stringify(result, null, 2);
-});
+})
+
+document.getElementById("deleteBtn").addEventListener("click", async() => {
+    const clientId = document.getElementById("clientId").value;
+
+    await fetch('http://localhost:5000/api/clients', {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: clientId
+    });
+})

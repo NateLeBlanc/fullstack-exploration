@@ -3,14 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <title>Client Storage</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            display: flex;
+            height: 100vh;
+        }
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            width: 300px;
+            min-width: 220px;
+            background: #f5f5f5;
+            padding: 20px;
+            gap: 20px;
+        }
+        .content {
+            flex: 1;
+            padding: 20px;
+            background: #fff;
+            border-left: 1px solid #ddd;
+        }
+        .content pre {
+            background: #f0f0f0;
+            padding: 10px;
+            min-height: 200px;
+        }
+    </style>
 </head>
 <body>
     <h1>Client Storage</h1>
-    <input type="text" id="firstNameInput" placeholder="FirstName" />
-    <input type="text" id="lastNameInput" placeholder="LastName" />
-    <input type="text" id="ageInput" placeholder="Age" />
-    <button id ="sendBtn">Send Name</button>
-    <pre id="responseArea"></pre>
+    <div class="container">
+        <div class="sidebar">
+            <div>
+                <h2>Add Client</h2>
+                <input type="text" id="firstNameInput" placeholder="FirstName" />
+                <input type="text" id="lastNameInput" placeholder="LastName" />
+                <input type="text" id="ageInput" placeholder="Age" />
+                <button id ="sendBtn">Send Client</button>
+            </div>
+            <div>
+                <h2>Remove Client by Id</h2>
+                <input type="text" id="clientId" placeHolder="Client Id" />
+                <button id="deleteBtn">Delete Client</button>
+            </div>
+        </div>
+        <div class="content">
+            <h2>Client List</h2>
+            <button id ="getBtn"> Get Clients</button>
+            <pre id="responseArea"></pre>
+        </div>
+    </div>
     <script src="application.js"></script>
 </body>
 </html>
