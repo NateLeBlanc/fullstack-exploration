@@ -1,41 +1,40 @@
-const webSocket = new WebSocket("ws://localhost:5000")
+const webSocket = new WebSocket("ws://localhost:5000/ws")
 
 webSocket.addEventListener("open", () => {
     console.log("[WebServer] Connected to server");
-    log("Connected to WebSocket server.")
+    console.log("Connected to WebSocket server.")
 });
 
 webSocket.addEventListener("message", (event) => {
     console.log("[webSocket] Message for server:", event.data);
-    log("Data recieved: " + event.data)
+    console.log("Data received: " + event.data)
 });
 
 webSocket.addEventListener("close", () => {
-    log("Websocket connection closed.")
+    console.log("Websocket connection closed.")
 });
 
 webSocket.addEventListener("error", (err) => {
-    log("Websocket error: " + err.message)
+    console.log("Websocket error: " + err.message)
 });
 
-document.getElementById("sendBtn").addEventListener("click", () => {
-    const name = document.getElementById("nameInput").value;
-    webSocket.send(name);
-    log("Data sent: " + name);
-});
+document.getElementById("sendBtn").addEventListener("click", async () => {
+    const firstName = document.getElementById("firstNameInput").value;
+    const lastName = document.getElementById("firstNameInput").value;
+    const age = document.getElementById("ageInput").value;
 
-async function sendName() {
-    const name = document.getElementById('nameInput').ariaValueMax;
-
-    const response = await fetch('https://localhost:56662/api/clients', {
+    const response = await fetch('http://localhost:5000/api/clients', {
         method: 'POST',
         headers: {
-            'Consent-Type': 'application/json'
+            'Content-Type': 'application/json'
         },
-        body: JSON.stringify({name: name})
+        body: JSON.stringify({
+            firstName: firstName,
+            lastName: lastName,
+            age: age
+        })
     });
 
     const result = await response.json();
-
-    document.getElementById('reponseArea').innerText = JSON.stringify(result);
-}
+    document.getElementById('responseArea').innerText = JSON.stringify(result, null, 2);
+});

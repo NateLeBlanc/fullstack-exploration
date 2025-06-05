@@ -17,26 +17,18 @@ builder.Services.AddDbContext<ClientDbContext>(options =>
 //Register classes and interfaces
 builder.Services.AddScoped<ClientRepository>();
 
-var app = builder.Build();
-
-// Middleware
-if (app.Environment.IsDevelopment())
+// Add Cross Origin Requests (CORS)
+builder.Services.AddCors(options =>
 {
-    app.UseSwagger();
-    app.UseSwaggerUI(c =>
+    options.AddDefaultPolicy(policy =>
     {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Client Storage v1");
-        c.RoutePrefix = "swagger";
+        policy.AllowAnyOrigin()
+            .AllowAnyHeader()
+            .AllowAnyMethod();
     });
-}
-
-app.UseHttpsRedirection();
-app.UseRouting();
-app.UseAuthorization();
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapControllers();
 });
+
+var app = builder.Build();
 
 // Add Websocket connections
 app.UseWebSockets();
@@ -79,6 +71,26 @@ app.Map("/ws", async context =>
         context.Response.StatusCode = 400;
     }
 });
+
+// Middleware
+app.UseCors();
+app.UseHttpsRedirection();
+app.UseRouting();
+app.UseAuthorization();
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
+});
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Client Storage v1");
+        c.RoutePrefix = "swagger";
+    });
+}
 
 // Migrate Database
 using (var scope = app.Services.CreateScope())

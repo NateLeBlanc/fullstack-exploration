@@ -20,7 +20,11 @@ public class ClientController(ClientRepository client) : ControllerBase
     public async Task<IActionResult> AddClient([FromBody] Client client)
     {
         await _clientRepo.AddClientAsync(client);
-        return Ok();
+        return Ok(new
+        {
+            message = "Client added",
+            client
+        });
     }
 
     [HttpGet]
